@@ -1,30 +1,28 @@
 # Meraki BSSID List
 
-This project creates a simple program to generate a list of enabled BSSID from your organization's Meraki networks. It's a script that allows Network Administrators to easily retrieve the details of the BSSID in their wireless networks. This helps the organization by providing a simple method to collect BSSID, aiding network troubleshooting and management.
+This project, dubbed "Meraki BSSID Dump", creates a simple but powerful Python script that generates a list of enabled BSSIDs across an organization's Meraki wireless networks. With a few simple commands, Network Administrators can retrieve detailed information of all the BSSIDs in their wireless networks, facilitating effective network management and troubleshooting.
 
 ## Technology Stack
 
-This script is written in Python and uses the Meraki DashboardAPI to interact with the Meraki networks. Python was chosen due to the availability of Meraki's advanced API package and simplicity of the syntax. 
+The script is written in Python and utilizes the Meraki DashboardAPI to interact with the Meraki cloud. Python was chosen due to the language's user-friendly syntax and the comprehensive support provided by Meraki's Python SDK.
 
 ## Status
 
-The current version of this script is a stable release, 1.0. 
+The current version is a stable release (1.0). However, subsequent updates and improvements are expected as and when necessary.
 
 ## Use Case
 
-The primary use case of this code is to retrieve and store information about BSSID in a CSV file. It loops through every organization, network and device registered under Meraki to fetch BSSID details. 
-
-It offers a solution to network administrators having to manually gather this data or implementing more complex solutions. 
+The primary function of this script is to scour through every organization, network, and device registered under the Meraki cloud and fetch pertinent details about every active BSSID. Consequently, it streamlines the process of gathering this data, which would otherwise require network administrators to implement convoluted solutions or perform manual data collection, a cumbersome and time-intensive process.
 
 ## Installation
 
-To install this script:
+Follow these steps to install and setup the script:
 
-1. Clone the [repo](<your repo link here>)
+1. Clone the [repo](https://github.com/shantarsecurity/meraki-bssid-dump)
 
 ```bash
-git clone https://github.com/<yourGithubUsername>/<yourRepoName>.git
-cd <yourRepoName>
+git clone https://github.com/shantarsecurity/meraki-bssid-dump.git
+cd meraki-bssid-dump
 ```
 
 2. Install the `meraki` package:
@@ -35,30 +33,30 @@ pip install meraki
 
 ## Configuration
 
-In the script you must replace `'Your Meraki API Key'` with your actual Meraki API key. 
+You will have to replace `'Your Meraki API Key'` in the script with your actual Meraki Dashboard API key. 
 
 ## Usage
 
-To execute the script, run:
+To run the script, use the following command:
 
 ```bash
 python3 bssid_list.py
 ```
 
-The output will be written to `bssid.csv` in the same directory where you run the script from.
+The script generates a CSV output file (`bssid.csv`) within the same directory from which the script is run.
 
-## Known issues
+## Known Issues
 
-If there are many devices in your network, the script will be running for a while as it needs to make requests to the Meraki API for each device. This is a known issue due to rate limit, so plan accordingly when running this script.
+The script may run for an extended period if your network houses numerous devices since it would have to make API requests for every single device. This delay is unavoidable due to Meraki's API rate limit, so it is advisable to schedule the script execution during off-peak times or periods of low network traffic.
 
 ## Future Ideas
 
-For future versions, we're considering adding a feature to display the progress of the fetching, options to specify organizations / networks / devices to fetch from, and additional options to filter or format the output. 
+Future enhancements to the script could include a progress display feature to show the fetching operation's status, options to specify particular organizations/networks/devices, and additional output filtering or formatting.
 
 ## Contributions
 
-We're welcome to the contributions, please fork the project and submit your Pull Requests! 
+Your contributions are most welcome. Please fork this project and submit your Pull Requests!
 
 ## License
 
-This project is licensed under the terms of the MIT license. For more details, see the [LICENSE](LICENSE) file.
+This project is licensed under the terms of the GPL-3.0 license. For more information, please refer to the [LICENSE](LICENSE) file.
