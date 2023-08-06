@@ -73,7 +73,7 @@ The script will generate a `bssid.csv` file in the same directory, containing th
 
 ## Contributions
 
-🤝 Contributions are welcome! If you have any ideas or improvements, feel free to fork the project and submit a pull request.
+🤝 Thanks to Matt Giepert for the bulk of the starting code! Future contributions are welcome! If you have any ideas or improvements, feel free to fork the project and submit a pull request.
 
 ## License
 
