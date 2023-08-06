@@ -15,7 +15,7 @@ for org in dash.organizations.getOrganizations():
         #loop through devices
         for device in dash.networks.getNetworkDevices(net['id']):
             #check if device is an AP
-            if 'MR' in device.get('model', ''):
+            if 'MR' in device.get('model', '') or 'CW' in device.get('model', ''):
                 print(f"    Processing AP device: {device['serial']}...")
                 #get BSSID list
                 status = dash.wireless.getDeviceWirelessStatus(device['serial'])
