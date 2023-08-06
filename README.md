@@ -1,6 +1,6 @@
 # Meraki BSSID Dump
 
-🔍 This project, **'Meraki BSSID Dump'**, is a Python script created to export BSSID (Basic Service Set Identifier) information from an organization's Meraki wireless networks. The primary use case is to retrieve BSSID details for manual import into e911 services location data. It provides network administrators with a simplified method to gather BSSID information, aiding in network troubleshooting and management.
+🔍 This project, **'Meraki BSSID Dump'**, is a Python script created to export BSSID (Basic Service Set Identifier) information from an organization's Meraki wireless networks. The primary use case is to retrieve BSSID details for manual import into geolocation data services (e.g. e911). It provides network and facility administrators with a simplified method to gather BSSID information, aiding in network troubleshooting and management.
 
 CSV file example output:
 
