@@ -42,7 +42,7 @@ cd meraki-bssid-dump
 2. Install the `meraki` package:
 
 ```bash
-pip install meraki
+pip3 install meraki
 ```
 
 ## Configuration
