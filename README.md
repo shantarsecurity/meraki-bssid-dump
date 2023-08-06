@@ -26,7 +26,7 @@ CSV file outut:
 
 - **Hospitals and Healthcare Facilities**: For hospitals and healthcare facilities with complex network infrastructure, the script can assist in monitoring and managing BSSIDs. It allows network administrators to track the performance of wireless networks in different areas within the facility, ensuring critical connectivity for medical devices, patient monitoring systems, and staff communication.
 
-- **Enterprise Networks**: In large enterprises with multiple branch offices and locations, the script can provide network administrators with a consolidated view of BSSID details across the organization. This helps in troubleshooting network issues, analyzing wireless performance, and 
+- **Enterprise Networks**: In large enterprises with multiple branch offices and locations, the script can provide network administrators with a consolidated view of BSSID details across the organization.  
 
 ## Installation
 
