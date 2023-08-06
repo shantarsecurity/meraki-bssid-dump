@@ -1,24 +1,30 @@
-# Meraki BSSID List
+# Meraki BSSID Dump
 
-🔍 This project, **"Meraki BSSID Dump"**, creates a simple, yet powerful, Python script that generates a list of enabled BSSIDs across an organization's Meraki wireless networks. By executing a few simple commands, network administrators can retrieve detailed BSSID information from their wireless networks, thus facilitating more effective network management and troubleshooting.
+🔍 This project, **'Meraki BSSID Dump'**, is a Python script created to export BSSID (Basic Service Set Identifier) information from an organization's Meraki wireless networks. The primary use case is to retrieve BSSID details for e911 services location data. It provides network administrators with a simplified method to gather BSSID information, aiding in network troubleshooting and management.
 
 ## Technology Stack
 
-🔧 The script is written in Python, and interacts with the Meraki cloud via the Meraki DashboardAPI. Python was chosen for its syntactical simplicity, and the comprehensive support provided by Meraki's Python SDK.
+🔧 The script is written in Python and utilizes the Meraki DashboardAPI to interact with the Meraki cloud. Python was chosen for its simplicity and the comprehensive support provided by Meraki's Python SDK.
 
 ## Status
 
-✅ The current script version is a stable release (1.0), however, updates and improvements are expected as and when necessary.
+✅ The current version of the script is stable (1.0), but updates and improvements may be implemented as needed.
 
-## Use Case
+## Use Cases
 
-🎯 The script's primary use case is to retrieve BSSID details from an organization, network, and device registered under Meraki. Essentially, it offers network administrators a simplified data gathering process, otherwise a convoluted task that requires significantly more time and effort.
+🎯 The script's primary use case is to export BSSID details for e911 services location data. However, it can also be beneficial for large enterprises such as colleges and hospitals. Here are a few additional use cases:
+
+- **Colleges and Universities**: In a college or university environment, the script can help network administrators identify and manage BSSIDs across multiple campuses, buildings, and access points. This information can be useful for optimizing network performance, monitoring network utilization, and ensuring proper coverage across campus areas.
+
+- **Hospitals and Healthcare Facilities**: For hospitals and healthcare facilities with complex network infrastructure, the script can assist in monitoring and managing BSSIDs. It allows network administrators to track the performance of wireless networks in different areas within the facility, ensuring critical connectivity for medical devices, patient monitoring systems, and staff communication.
+
+- **Enterprise Networks**: In large enterprises with multiple branch offices and locations, the script can provide network administrators with a consolidated view of BSSID details across the organization. This helps in troubleshooting network issues, analyzing wireless performance, and 
 
 ## Installation
 
-📥 Follow the steps below for installation and setup:
+To install and use the script:
 
-1. Clone the repo using the following link:
+1. Clone the [repo](https://github.com/shantarsecurity/meraki-bssid-dump) using the following command:
 
 ```bash
 git clone https://github.com/shantarsecurity/meraki-bssid-dump.git
@@ -33,32 +39,30 @@ pip install meraki
 
 ## Configuration
 
-⚙️ Ensure to replace `'Your Meraki API Key'` in the script with your actual Meraki Dashboard API key.
+Before running the script, make sure to replace `'Your Meraki API Key'` in the script with your actual Meraki Dashboard API key.
 
 ## Usage
 
-🚀 To run the script, use the following command:
+To execute the script, use the following command:
 
 ```bash
 python3 meraki-bssid-dump.py
 ```
 
-📄 Upon successful execution, the script creates a `bssid.csv` file in the directory where the script was run. This file contains the fetched BSSID details.
+The script will generate a `bssid.csv` file in the same directory, containing the fetched BSSID details.
 
 ## Known Issues
 
-⚠️ Should your network host a large number of devices, the script may execute for a while, given each device requires an API request. This delay is due to the rate limit imposed on the Meraki API and is a known issue. Therefore, it's advised to run the script during off-peak times or a period with less network traffic.
+⚠️ Running the script on networks with a large number of devices may take some time due to the rate limit imposed by the Meraki API. It is advised to run the script during off-peak hours or schedule it accordingly.
 
 ## Future Improvements
 
-🔮 Future versions could potentially include a progress display, specific fetch options for organizations/networks/devices, and additional filters or formatters for the output data.
+🔮 Future versions of the script may include added features such as a progress display, filtering options, and customized output formats.
 
 ## Contributions
 
-🤝 Community contributions are always welcome! Please fork the project and submit your pull requests!
+🤝 Contributions are welcome! If you have any ideas or improvements, feel free to fork the project and submit a pull request.
 
 ## License
 
-📜 This project is licensed under the GPL-3.0 license. For additional details, refer to the [LICENSE](LICENSE) file.
-
-🌟 Don't forget to star ⭐ the repo if you find it useful!
+📜 This project is licensed under the GPL-3.0 license. For more information, please refer to the [LICENSE](LICENSE) file.
