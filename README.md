@@ -2,7 +2,7 @@
 [![Run in Cisco Cloud IDE](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-runable-icon.svg)](https://developer.cisco.com/devenv/?id=devenv-vscode-base&GITHUB_SOURCE_REPO=https://github.com/shantarsecurity/meraki-bssid-dump)
 # Meraki BSSID Dump
 
-🔍 This project, **'Meraki BSSID Dump'**, is a Python script created to export BSSID (Basic Service Set Identifier) information from an organization's Meraki wireless networks. The primary use case is to retrieve BSSID details for manual import into geolocation data services (e.g. e911). It provides network and facility administrators with a simplified method to gather BSSID information, aiding in network troubleshooting and management.
+🔍 This project, **'Meraki BSSID Dump'**, is a Python script created to export BSSID (Basic Service Set Identifier) information from an organization's Meraki wireless networks. The primary use case is to retrieve BSSID details for manual import into geolocation data services (e.g. e911). It provides network and facility administrators with a simplified method to gather bulk BSSID information.
 
 CSV file example output:
 
@@ -12,7 +12,7 @@ CSV file example output:
 | Device1     | 66:77:88:99:AA:BB  | Network1  | 5GHz  |
 | Device2     | CC:DD:EE:FF:00:11  | Network2  | 2.4GHz|
 
-The document "[Calculating Cisco Meraki BSSID MAC Addresses](https://documentation.meraki.com/MR/Wi-Fi_Basics_and_Best_Practices/Calculating_Cisco_Meraki_BSSID_MAC_Addresses)" offers a comprehensive guide on how BSSID MAC addresses are computed for Cisco Meraki access points. Each SSID is represented by a unique BSSID, which helps clients identify the associated access point. The BSSID addresses are derived from the wired MAC address, with calculations based on the MAC OUI. Different MAC OUIs for various access point models determine the adjustments for 2.4 GHz and 5 GHz bands. The BSSID values are assigned to each radio and SSID, with up to 15 possible BSSID combinations per radio. The documentation highlights the methods of obtaining BSSID values using the Dashboard API or by accessing the AP details page on the Cisco Meraki Dashboard.
+The document "[Calculating Cisco Meraki BSSID MAC Addresses](https://documentation.meraki.com/MR/Wi-Fi_Basics_and_Best_Practices/Calculating_Cisco_Meraki_BSSID_MAC_Addresses)" offers a comprehensive guide on how BSSID MAC addresses are computed for Cisco Meraki access points. Each SSID is represented by a unique BSSID, which helps clients identify the associated access point. The BSSID addresses are derived from the wired MAC address, with calculations based on the MAC OUI. Different MAC OUIs for various access point models determine the adjustments for 2.4 GHz and 5 GHz bands. The BSSID values are assigned to each radio and SSID, with up to 15 possible BSSID combinations per radio. 
 
 ## Technology Stack
 
