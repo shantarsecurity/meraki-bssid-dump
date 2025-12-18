@@ -6,17 +6,19 @@
 
 CSV file example output:
 
-| Device Name | BSSID              | SSID Name | Band  |
-|-------------|--------------------|-----------|-------|
-| Device1     | 00:11:22:33:44:55  | Network1  | 2.4GHz|
-| Device1     | 66:77:88:99:AA:BB  | Network1  | 5GHz  |
-| Device2     | CC:DD:EE:FF:00:11  | Network2  | 2.4GHz|
+| Network ID | Network Name | Device Model | Device Serial  | Device Base MAC   | LAN IP          | Display Name | Location Address   | Longitude | Latitude | Floor Plan ID | Notes     | BSSID              | SSID      | Band  |
+|------------|--------------|--------------|----------------|-------------------|-----------------|--------------|--------------------|-----------|----------|---------------|-----------|--------------------|-----------|-------|
+| A_12345678 | MyNetwork1   | CW1234L      | A12B-CD34-E56F | a1:b2:c3:d4:e5:f6 | 123.456.789.101 | Device1      | 123 A Street NW    | -45.678   |  90.123  | None          |           | 00:11:22:33:44:55  | Network1  | 2.4GHz|
+| A_12345678 | MyNetwork1   | MR99         | GH78-I9J0-1K2L | 1a:2b:3c:4d:5e:6f | 121.314.151.617 | Device1      | 456 D Aveneue SE   | -90.123   | -45.678  | None          |           | 66:77:88:99:AA:BB  | Network1  | 5GHz  |
+| A_12345678 | MyNetwork1   | MR01         | 3M45-O6N8-9Q09 | ab:12:cd:34:ef:56 | 181.920.212.223 | Device2      | 789 13th Blvd      |  45.678   | -90.123  | None          |           | CC:DD:EE:FF:00:11  | Network2  | 2.4GHz|
 
 The document "[Calculating Cisco Meraki BSSID MAC Addresses](https://documentation.meraki.com/MR/Wi-Fi_Basics_and_Best_Practices/Calculating_Cisco_Meraki_BSSID_MAC_Addresses)" offers a comprehensive guide on how BSSID MAC addresses are computed for Cisco Meraki access points. Each SSID is represented by a unique BSSID, which helps clients identify the associated access point. The BSSID addresses are derived from the wired MAC address, with calculations based on the MAC OUI. Different MAC OUIs for various access point models determine the adjustments for 2.4 GHz and 5 GHz bands. The BSSID values are assigned to each radio and SSID, with up to 15 possible BSSID combinations per radio. 
 
 ## Technology Stack
 
-🔧 The script is written in Python and utilizes the Meraki DashboardAPI to interact with the Meraki cloud. Python was chosen for its simplicity and the comprehensive support provided by Meraki's Python SDK.
+🔧 The script is written in Python and utilizes the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python/tree/main) to interact with the [Meraki Dashboard API](https://developer.cisco.com/meraki/api-v1/).
+
+🐍 Python was chosen for its simplicity and the comprehensive support provided by Meraki's Python SDK.
 
 ## Status
 
@@ -24,7 +26,7 @@ The document "[Calculating Cisco Meraki BSSID MAC Addresses](https://documentati
 
 ## Use Cases
 
-🎯 The script's primary use case is to export BSSID details for e911 services location data. However, it can also be beneficial for large enterprises such as colleges and hospitals. Here are a few additional use cases:
+🎯 The script's primary use case is to export BSSID details for e911 services location data, as might be required for large organizations. Here are a few additional use cases:
 
 - **Colleges and Universities**: In a college or university environment, the script can help network administrators identify and manage BSSIDs across multiple campuses, buildings, and access points. This information can be useful for optimizing network performance, monitoring network utilization, and ensuring proper coverage across campus areas.
 
@@ -34,7 +36,7 @@ The document "[Calculating Cisco Meraki BSSID MAC Addresses](https://documentati
 
 ## Installation
 
-To install and use the script:
+To install the script:
 
 1. Clone the [repo](https://github.com/shantarsecurity/meraki-bssid-dump) using the following command:
 
@@ -43,10 +45,10 @@ git clone https://github.com/shantarsecurity/meraki-bssid-dump.git
 cd meraki-bssid-dump
 ```
 
-2. Install the `meraki` package:
+2. Install the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python/tree/main):
 
 ```bash
-pip3 install meraki
+pip3 install --upgrade meraki
 ```
 
 ## Configuration
@@ -61,7 +63,7 @@ To execute the script, use the following command:
 python3 meraki-bssid-dump.py
 ```
 
-The script will generate a `bssid.csv` file in the same directory, containing the fetched BSSID details.
+The script will generate a `Meraki-BSSIDs.csv` file in the same directory, containing the fetched BSSID details.
 
 ## Known Issues
 
