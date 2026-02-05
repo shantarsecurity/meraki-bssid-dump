@@ -14,9 +14,12 @@ def get_api_key():
         return user_api_key
 
 # Initialize the api_key variable as an empty string
+# >>> ENTER YOUR API KEY HERE IF YOU DON'T WANT TO BE PROMPTED EVERY TIME
+# >>> BE AWARE OF THE RISKS OF STORING YOUR API KEY IN A STATIC FILE!
 api_key = ""
 
 # Request Meraki API Key from the user by looping until a nominally viable entry is provided
+# This prompt will not occur if a sufficiently long API key is preconfigured above
 while len(api_key) < 40:
     try:
         api_key = get_api_key()
@@ -27,11 +30,6 @@ while len(api_key) < 40:
             print("Thank you for providing your Meraki API Key!")
         else:
             print("Your Meraki API Key is required to continue!\nMerkai API Keys should be at least 40 characters long.\n")
-
-# Manual / Static Meraki API Key Override
-# If your runtime environment does not support getpass for some reason, you can uncomment this section and set your API Key permanently here.
-# Be aware of the potential risks of storing your API key in a plaintext file like this.
-# api_key = ''
 
 # Create Meraki Dashboard object
 try:

@@ -97,7 +97,7 @@ python3 meraki-bssid-dump.py
 
 <summary>Interactive API Key Prompt</summary>
 
-In rare cases, due to limitations in the `getpass` module, the interactive prompt for the Meraki API Key might not work correctly. If you are affected by this, there is commented code you can edit to set your Meraki API Key statically. If you need to apply this override, also comment-out the preceeding while loop that handles the interactive prompt. See the [getpass documentation](https://docs.python.org/3/library/getpass.html) for details on its limitations. 
+In rare cases, due to limitations in the `getpass` module, the interactive prompt for the Meraki API Key might not work correctly. If you are affected by this, you can edit meraki-bssid-dump.py to set your Meraki API Key statically. If you need to apply this override, the interactive prompt will not occur. See the [getpass documentation](https://docs.python.org/3/library/getpass.html) for details on its limitations. 
 
 `getpass` is part of the official [Python Standard Library](https://docs.python.org/3/library/index.html).\
 ***It should be extremely unusual for these limitations to impact interactive users.***
