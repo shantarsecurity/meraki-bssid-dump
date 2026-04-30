@@ -8,7 +8,7 @@ from tqdm import tqdm
 def get_api_key():
     try:
         user_api_key = getpass.getpass("Enter your Meraki API Key to continue: ", echo_char='*')
-    except:
+    except Exception as exc:
         raise Exception("Unable to prompt for API Key!\n\nYou might need to set your API Key statically in the script file.")
     else:
         return user_api_key
@@ -23,7 +23,7 @@ api_key = ""
 while len(api_key) < 40:
     try:
         api_key = get_api_key()
-    except:
+    except Exception as exc:
         raise Exception("An error occurred in prompting for the API Key!\n\nStatic configuration might be necessary.")
     else:
         if len(api_key) >= 40:
@@ -34,8 +34,8 @@ while len(api_key) < 40:
 # Create Meraki Dashboard object
 try:
     dash = meraki.DashboardAPI(api_key, suppress_logging=True)
-except:
-    raise Exception("Unable to define the Meraki Dashboard API connection! Check api_key")
+except Exception as exc:
+    raise Exception("Unable to define the Meraki Dashboard API connection! Check api_key") from exc
 
 # Initialize counters to track parsing
 netCount        = 0
@@ -50,8 +50,8 @@ print("Fetching Meraki Organizations...")
 try:
     dashOrgs = dash.organizations.getOrganizations()
     # Returns a List object
-except:
-    raise Exception("Unable to get Meraki Organizations from the Meraki Dashboard API!")
+except Exception as exc:
+    raise Exception("Unable to get Meraki Organizations from the Meraki Dashboard API!") from exc
 else:
     totalOrgs = len(dashOrgs)
     # Initialize empty list to hold details for parsed networks
@@ -70,8 +70,8 @@ else:
             try:
                 # Get network details for each organziation
                 orgNetworks = dash.organizations.getOrganizationNetworks(org_id, productTypes=["wireless"], total_pages="all")
-            except:
-                print(f"[!!]An exception occurred when trying to retrieve networks for organization id: {org_id} (\"{org_name}\")")
+            except Exception:
+                print(f"[!!] An exception occurred when trying to retrieve networks for organization id: {org_id} (\"{org_name}\")")
             else:
                 # Store data for networks
                 allMatchedNetworks.extend(orgNetworks)
@@ -97,8 +97,8 @@ if totalNets > 0:
         tqdm.write(f"    Processing network {netCount}/{totalNets} ID: {netId} Name: {netName}")
         try:
             netDevices = dash.organizations.getOrganizationDevices(organizationId=orgId, networkIds=[netId], productTypes="wireless", perPage=5000, total_pages="all")
-        except:
-            print(f"[!!] An excption occurred in processing network ID {netId}")
+        except Exception:
+            print(f"[!!] An exception occurred in processing network ID {netId}")
         else:
             devCount = len(netDevices)
             tqdm.write(f"      {devCount} wireless devices found!")
@@ -107,11 +107,11 @@ if totalNets > 0:
                 currentNetDevCount      = currentNetDevCount + 1
                 totalDevices            = totalDevices + 1
                 tqdm.write(f"        Processing wireless device {currentNetDevCount}/{devCount}:")
-                currentNetDevModel      = str(netDevice['model'])
-                currentNetDevSerial     = str(netDevice['serial'])
+                currentNetDevModel      = str(netDevice.get('model', ''))
+                currentNetDevSerial     = str(netDevice.get('serial', ''))
                 currentNetDevMacAddress = str(netDevice.get('mac', ""))
                 currentNetDevLanIp      = str(netDevice.get('lanIp', ""))
-                currentNetDevName = str(netDevice['name']) if netDevice['name'] is not None else currentNetDevSerial
+                currentNetDevName = str(netDevice.get('name')) if netDevice.get('name') is not None else currentNetDevSerial
                 currentNetDevAddress = str(netDevice.get('address', ''))
                 currentNetDevLatitude = str(netDevice.get('lat', ''))
                 currentNetDevLongitude = str(netDevice.get('lng', ''))
@@ -130,17 +130,17 @@ if totalNets > 0:
                 try:
                     # get BSSID List
                     status = dash.wireless.getDeviceWirelessStatus(netDevice['serial'])
-                except:
+                except Exception:
                     print(f"[!!] An exception occurred in processing BSSIDs for {currentNetDevSerial}")
                 else:
                     # Loop through all basic service sets
-                    for set in status['basicServiceSets']:
+                    for bss_set in status.get('basicServiceSets', []):
                         # Only report on enabled BSSIDs
-                        if set.get('enabled'):
+                        if bss_set.get('enabled'):
                             bssidCount = bssidCount +1
-                            deviceBssid = str(set['bssid'])
-                            deviceSsid = str(set['ssidName'])
-                            bssidBand = str(set['band'])
+                            deviceBssid = str(bss_set.get('bssid', ''))
+                            deviceSsid = str(bss_set.get('ssidName', ''))
+                            bssidBand = str(bss_set.get('band', ''))
                             tqdm.write(f"      Processing BSSID: {deviceBssid}")
                             tqdm.write(f"        BSSID: {deviceBssid}")
                             tqdm.write(f"        SSID:  {deviceSsid}")
